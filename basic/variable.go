@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"nbfriends/basic/models"
 )
@@ -34,7 +35,15 @@ func main() {
 		fmt.Println(isExist, isExistB)
 	}()
 
-	fmt.Println(models.User)
+	user := models.User3
+	dataByte, _ := json.Marshal(models.User3)
+	fmt.Printf("%+v\n", string(dataByte))
+
+	fmt.Println(user)
+	user.Email = "admin@noobee.id"
+	fmt.Println(user)
+
+	models.RunPointer()
 
 	coba(10, test())
 }
