@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"nbfriends/basic/models"
+)
 
 // var name string = "Noobeeid"
 // var age = 10
@@ -25,7 +28,15 @@ func main() {
 	f := find(students)
 	isExist := f("reyhan")
 	isExistB := f("fikri")
-	fmt.Println(isExist, isExistB)
+
+	func() {
+
+		fmt.Println(isExist, isExistB)
+	}()
+
+	fmt.Println(models.User)
+
+	coba(10, test())
 }
 
 func get(text string, age int) (string, int) {
@@ -62,8 +73,17 @@ func coba(num int, cb func(int) int) {
 	fmt.Println("total callback", total)
 }
 
+func test() func(int) int {
+	return func(i int) int {
+		fmt.Println(i)
+		return i + 20
+	}
+}
+
 func find(students []string) func(string) bool {
+	var data = ""
 	return func(s string) bool {
+		data = s
 		isExist := false
 		for i := 0; i < len(students); i++ {
 			if students[i] == s {
@@ -71,6 +91,8 @@ func find(students []string) func(string) bool {
 				break
 			}
 		}
+
+		fmt.Println(data)
 
 		return isExist
 	}
